@@ -12,7 +12,12 @@ let clickCount = 0;
 // первую карточку. Потом переходите к заданию 02 в TASKS.md.
 firstCard.addEventListener("click", () => {
   clickCount = clickCount + 1;
-  labStatus.textContent = `${eventName}: нажатий ${clickCount}`;
+
+  if (clickCount === 1) {
+    labStatus.textContent = `Первое открытие: ${eventName}`;
+  } else {
+    labStatus.textContent = `Повторное открытие: ${eventName}`;
+  }
 });
 
 // 02–03. Вы будете постепенно менять обработчик выше: добавите
