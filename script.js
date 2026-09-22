@@ -6,6 +6,7 @@
 const firstCard = document.querySelector('[data-event="talk"]');
 const labStatus = document.querySelector("#lab-status");
 const eventName = "Город в деталях";
+const detailsTitle = document.querySelector("#details-title");
 let clickCount = 0;
 
 // 01. Уберите /* и */ вокруг обработчика, сохраните файл и нажмите
@@ -18,6 +19,8 @@ firstCard.addEventListener("click", () => {
   } else {
     labStatus.textContent = `Повторное открытие: ${eventName}`;
   }
+
+  detailsTitle.textContent = eventName;
 });
 
 // 02–03. Вы будете постепенно менять обработчик выше: добавите
