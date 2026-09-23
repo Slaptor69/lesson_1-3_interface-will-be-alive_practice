@@ -10,6 +10,7 @@ const detailsTime = document.querySelector("#details-time");
 const detailsPanel = document.querySelector("#event-details");
 const cards = document.querySelectorAll(".event-card");
 const eventCount = document.querySelector("#event-count");
+const surpriseButton = document.querySelector("#surprise-button");
 let selectedCard = null;
 
 eventCount.textContent = cards.length;
@@ -33,6 +34,15 @@ cards.forEach((card) => {
     showEvent(card);
     labStatus.textContent = "Нажата карточка из программы";
   });
+});
+
+surpriseButton.addEventListener("click", () => {
+  const availableCards = [...cards].filter((card) => card !== selectedCard);
+  const randomIndex = Math.floor(Math.random() * availableCards.length);
+  const randomCard = availableCards[randomIndex];
+
+  showEvent(randomCard);
+  labStatus.textContent = `Случайно выбрано: ${randomCard.dataset.title}`;
 });
 
 // 02–03. Вы будете постепенно менять обработчик выше: добавите
