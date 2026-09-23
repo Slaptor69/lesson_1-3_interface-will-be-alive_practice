@@ -22,14 +22,17 @@ function showEvent(card) {
 
   if (selectedCard) {
     selectedCard.classList.remove("event-card--selected");
+    selectedCard.setAttribute("aria-pressed", "false");
   }
 
   card.classList.add("event-card--selected");
+  card.setAttribute("aria-pressed", "true");
   selectedCard = card;
   detailsPanel.style.setProperty("--accent", card.dataset.accent);
 }
 
 cards.forEach((card) => {
+  card.setAttribute("aria-pressed", "false");
   card.addEventListener("click", () => {
     showEvent(card);
     labStatus.textContent = "Нажата карточка из программы";
