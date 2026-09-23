@@ -7,8 +7,11 @@ const labStatus = document.querySelector("#lab-status");
 const detailsTitle = document.querySelector("#details-title");
 const detailsDescription = document.querySelector("#details-description");
 const detailsTime = document.querySelector("#details-time");
+const detailsPanel = document.querySelector("#event-details");
 const cards = document.querySelectorAll(".event-card");
 const eventCount = document.querySelector("#event-count");
+const surpriseButton = document.querySelector("#surprise-button");
+let selectedCard = null;
 
 eventCount.textContent = cards.length;
 
@@ -16,6 +19,14 @@ function showEvent(card) {
   detailsTitle.textContent = card.dataset.title;
   detailsDescription.textContent = card.dataset.description;
   detailsTime.textContent = card.dataset.time;
+
+  if (selectedCard) {
+    selectedCard.classList.remove("event-card--selected");
+  }
+
+  card.classList.add("event-card--selected");
+  selectedCard = card;
+  detailsPanel.style.setProperty("--accent", card.dataset.accent);
 }
 
 cards.forEach((card) => {
@@ -23,6 +34,15 @@ cards.forEach((card) => {
     showEvent(card);
     labStatus.textContent = "Нажата карточка из программы";
   });
+});
+
+surpriseButton.addEventListener("click", () => {
+  const availableCards = [...cards].filter((card) => card !== selectedCard);
+  const randomIndex = Math.floor(Math.random() * availableCards.length);
+  const randomCard = availableCards[randomIndex];
+
+  showEvent(randomCard);
+  labStatus.textContent = `Случайно выбрано: ${randomCard.dataset.title}`;
 });
 
 // 02–03. Вы будете постепенно менять обработчик выше: добавите
