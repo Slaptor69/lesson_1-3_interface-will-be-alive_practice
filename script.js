@@ -7,8 +7,10 @@ const labStatus = document.querySelector("#lab-status");
 const detailsTitle = document.querySelector("#details-title");
 const detailsDescription = document.querySelector("#details-description");
 const detailsTime = document.querySelector("#details-time");
+const detailsPanel = document.querySelector("#event-details");
 const cards = document.querySelectorAll(".event-card");
 const eventCount = document.querySelector("#event-count");
+let selectedCard = null;
 
 eventCount.textContent = cards.length;
 
@@ -16,6 +18,14 @@ function showEvent(card) {
   detailsTitle.textContent = card.dataset.title;
   detailsDescription.textContent = card.dataset.description;
   detailsTime.textContent = card.dataset.time;
+
+  if (selectedCard) {
+    selectedCard.classList.remove("event-card--selected");
+  }
+
+  card.classList.add("event-card--selected");
+  selectedCard = card;
+  detailsPanel.style.setProperty("--accent", card.dataset.accent);
 }
 
 cards.forEach((card) => {
